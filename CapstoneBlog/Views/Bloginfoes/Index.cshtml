@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CapstoneBlog.Models.Bloginfo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+}
+
+<h2>Blogs</h2>
+
+<p>
+    <button class="btn btn-light"> @Html.ActionLink("Create New", "Create")</button> 
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Blogurl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employeeinfo.name)
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Title)</h5>
+                <p class="card-text"> @Html.DisplayFor(modelItem => item.DateOfCreation)</p>
+                <p class="card-text">  @Html.DisplayFor(modelItem => item.Subject)</p>
+                <a href="#" class="btn btn-primary">  @Html.DisplayFor(modelItem => item.Blogurl)</a><br /><br />
+                <button class="btn btn-danger"> @Html.ActionLink("Delete", "Delete", new { id = item.Blogid })</button>
+                <button class="btn btn-info">  @Html.ActionLink("Edit", "Edit", new { id = item.Blogid })</button>
+            </div>
+        </div>
+
+
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Blogurl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employeeinfo.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Blogid }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Blogid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Blogid })
+            </td>*@
+        </tr>
+    }
+
+</table>

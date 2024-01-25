@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Admin Login Page</h2>
+
+<form action="Verify" method="post">
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+        <input type="email" id="form2Example1" class="form-control" name="EmailId" />
+        <label class="form-label" for="form2Example1">Email Address</label>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+        <input type="password" id="form2Example2" class="form-control" name="Password" />
+        <label class="form-label" for="form2Example2">Password</label>
+    </div> 
+
+    <!-- Submit button -->
+    <input type="submit" value="Login" />
+    @*<button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>*@
+
+
+
+</form>

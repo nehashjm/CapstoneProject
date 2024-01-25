@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="capstonedbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'capstonedb.dbo.AdminInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AdminInfo">
+    <Key>
+      <PropertyRef Name="EmailId" />
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bloginfo">
+    <Key>
+      <PropertyRef Name="Blogid" />
+    </Key>
+    <Property Name="Blogid" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateOfCreation" Type="datetime" />
+    <Property Name="Blogurl" Type="nvarchar" MaxLength="50" />
+    <Property Name="empemail" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="employeeinfo">
+    <Key>
+      <PropertyRef Name="emailid" />
+    </Key>
+    <Property Name="emailid" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DOJ" Type="datetime" />
+    <Property Name="passcode" Type="int" />
+  </EntityType>
+  <Association Name="FK__Bloginfo__empema__5FB337D6">
+    <End Role="employeeinfo" Type="Self.employeeinfo" Multiplicity="0..1" />
+    <End Role="Bloginfo" Type="Self.Bloginfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employeeinfo">
+        <PropertyRef Name="emailid" />
+      </Principal>
+      <Dependent Role="Bloginfo">
+        <PropertyRef Name="empemail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="capstonedbModelStoreContainer">
+    <EntitySet Name="Bloginfo" EntityType="Self.Bloginfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employeeinfo" EntityType="Self.employeeinfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminInfo" EntityType="Self.AdminInfo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AdminInfo].[EmailId] AS [EmailId], 
+    [AdminInfo].[Password] AS [Password]
+    FROM [dbo].[AdminInfo] AS [AdminInfo]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Bloginfo__empema__5FB337D6" Association="Self.FK__Bloginfo__empema__5FB337D6">
+      <End Role="employeeinfo" EntitySet="employeeinfo" />
+      <End Role="Bloginfo" EntitySet="Bloginfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

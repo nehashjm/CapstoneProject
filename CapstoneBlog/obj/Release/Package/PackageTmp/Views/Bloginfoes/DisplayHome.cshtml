@@ -1,0 +1,23 @@
+﻿@model IEnumerable<CapstoneBlog.Models.Bloginfo>
+
+@{
+    ViewBag.Title = "DisplayHome";
+}
+
+<h2>List Of Blogs</h2>
+
+
+@foreach (var item in Model)
+{
+
+
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Title) By @Html.DisplayFor(modelItem => item.empemail)</h5>
+            <p class="card-text">Date: @Html.DisplayFor(modelItem => item.DateOfCreation)</p>
+            <p class="card-text">Subject:  @Html.DisplayFor(modelItem => item.Subject)</p>
+            <a href="#" class="btn btn-primary">  @Html.DisplayFor(modelItem => item.Blogurl)</a><br /><br />
+           
+        </div>
+    </div>
+}

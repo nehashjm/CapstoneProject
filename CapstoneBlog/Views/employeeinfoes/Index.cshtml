@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CapstoneBlog.Models.employeeinfo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+<h2>Employee List</h2>
+
+<p>
+    <button class="btn btn-light">@Html.ActionLink("Add New", "Create")</button>  
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emailid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.passcode)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.emailid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOJ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.passcode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.emailid }) |
+            @Html.ActionLink("Details", "Details", new { id = item.emailid }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.emailid })
+        </td>
+    </tr>
+}
+
+</table>

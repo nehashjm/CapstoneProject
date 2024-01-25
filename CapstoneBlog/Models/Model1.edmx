@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="capstonedbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'capstonedb.dbo.AdminInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AdminInfo">
+          <Key>
+            <PropertyRef Name="EmailId" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bloginfo">
+          <Key>
+            <PropertyRef Name="Blogid" />
+          </Key>
+          <Property Name="Blogid" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfCreation" Type="datetime" />
+          <Property Name="Blogurl" Type="nvarchar" MaxLength="50" />
+          <Property Name="empemail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="employeeinfo">
+          <Key>
+            <PropertyRef Name="emailid" />
+          </Key>
+          <Property Name="emailid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOJ" Type="datetime" />
+          <Property Name="passcode" Type="int" />
+        </EntityType>
+        <Association Name="FK__Bloginfo__empema__5FB337D6">
+          <End Role="employeeinfo" Type="Self.employeeinfo" Multiplicity="0..1" />
+          <End Role="Bloginfo" Type="Self.Bloginfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeeinfo">
+              <PropertyRef Name="emailid" />
+            </Principal>
+            <Dependent Role="Bloginfo">
+              <PropertyRef Name="empemail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="capstonedbModelStoreContainer">
+          <EntitySet Name="Bloginfo" EntityType="Self.Bloginfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeeinfo" EntityType="Self.employeeinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminInfo" EntityType="Self.AdminInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AdminInfo].[EmailId] AS [EmailId], 
+    [AdminInfo].[Password] AS [Password]
+    FROM [dbo].[AdminInfo] AS [AdminInfo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Bloginfo__empema__5FB337D6" Association="Self.FK__Bloginfo__empema__5FB337D6">
+            <End Role="employeeinfo" EntitySet="employeeinfo" />
+            <End Role="Bloginfo" EntitySet="Bloginfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="capstonedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bloginfo">
+          <Key>
+            <PropertyRef Name="Blogid" />
+          </Key>
+          <Property Name="Blogid" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfCreation" Type="DateTime" Precision="3" />
+          <Property Name="Blogurl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="empemail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="employeeinfo" Relationship="Self.FK__Bloginfo__empema__5FB337D6" FromRole="Bloginfo" ToRole="employeeinfo" />
+        </EntityType>
+        <EntityType Name="employeeinfo">
+          <Key>
+            <PropertyRef Name="emailid" />
+          </Key>
+          <Property Name="emailid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DOJ" Type="DateTime" Precision="3" />
+          <Property Name="passcode" Type="Int32" />
+          <NavigationProperty Name="Bloginfoes" Relationship="Self.FK__Bloginfo__empema__5FB337D6" FromRole="employeeinfo" ToRole="Bloginfo" />
+        </EntityType>
+        <EntityType Name="AdminInfo">
+          <Key>
+            <PropertyRef Name="EmailId" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bloginfo__empema__5FB337D6">
+          <End Role="employeeinfo" Type="Self.employeeinfo" Multiplicity="0..1" />
+          <End Role="Bloginfo" Type="Self.Bloginfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeeinfo">
+              <PropertyRef Name="emailid" />
+            </Principal>
+            <Dependent Role="Bloginfo">
+              <PropertyRef Name="empemail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="capstonedbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bloginfoes" EntityType="Self.Bloginfo" />
+          <EntitySet Name="employeeinfoes" EntityType="Self.employeeinfo" />
+          <EntitySet Name="AdminInfoes" EntityType="Self.AdminInfo" />
+          <AssociationSet Name="FK__Bloginfo__empema__5FB337D6" Association="Self.FK__Bloginfo__empema__5FB337D6">
+            <End Role="employeeinfo" EntitySet="employeeinfoes" />
+            <End Role="Bloginfo" EntitySet="Bloginfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="capstonedbModelStoreContainer" CdmEntityContainer="capstonedbEntities">
+          <EntitySetMapping Name="Bloginfoes">
+            <EntityTypeMapping TypeName="capstonedbModel.Bloginfo">
+              <MappingFragment StoreEntitySet="Bloginfo">
+                <ScalarProperty Name="Blogid" ColumnName="Blogid" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="DateOfCreation" ColumnName="DateOfCreation" />
+                <ScalarProperty Name="Blogurl" ColumnName="Blogurl" />
+                <ScalarProperty Name="empemail" ColumnName="empemail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeeinfoes">
+            <EntityTypeMapping TypeName="capstonedbModel.employeeinfo">
+              <MappingFragment StoreEntitySet="employeeinfo">
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="passcode" ColumnName="passcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminInfoes">
+            <EntityTypeMapping TypeName="capstonedbModel.AdminInfo">
+              <MappingFragment StoreEntitySet="AdminInfo">
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

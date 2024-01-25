@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="capstonedbModelStoreContainer" CdmEntityContainer="capstonedbEntities">
+    <EntitySetMapping Name="Bloginfoes">
+      <EntityTypeMapping TypeName="capstonedbModel.Bloginfo">
+        <MappingFragment StoreEntitySet="Bloginfo">
+          <ScalarProperty Name="Blogid" ColumnName="Blogid" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="DateOfCreation" ColumnName="DateOfCreation" />
+          <ScalarProperty Name="Blogurl" ColumnName="Blogurl" />
+          <ScalarProperty Name="empemail" ColumnName="empemail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employeeinfoes">
+      <EntityTypeMapping TypeName="capstonedbModel.employeeinfo">
+        <MappingFragment StoreEntitySet="employeeinfo">
+          <ScalarProperty Name="emailid" ColumnName="emailid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+          <ScalarProperty Name="passcode" ColumnName="passcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminInfoes">
+      <EntityTypeMapping TypeName="capstonedbModel.AdminInfo">
+        <MappingFragment StoreEntitySet="AdminInfo">
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="capstonedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bloginfo">
+    <Key>
+      <PropertyRef Name="Blogid" />
+    </Key>
+    <Property Name="Blogid" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfCreation" Type="DateTime" Precision="3" />
+    <Property Name="Blogurl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="empemail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="employeeinfo" Relationship="Self.FK__Bloginfo__empema__5FB337D6" FromRole="Bloginfo" ToRole="employeeinfo" />
+  </EntityType>
+  <EntityType Name="employeeinfo">
+    <Key>
+      <PropertyRef Name="emailid" />
+    </Key>
+    <Property Name="emailid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DOJ" Type="DateTime" Precision="3" />
+    <Property Name="passcode" Type="Int32" />
+    <NavigationProperty Name="Bloginfoes" Relationship="Self.FK__Bloginfo__empema__5FB337D6" FromRole="employeeinfo" ToRole="Bloginfo" />
+  </EntityType>
+  <EntityType Name="AdminInfo">
+    <Key>
+      <PropertyRef Name="EmailId" />
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Bloginfo__empema__5FB337D6">
+    <End Role="employeeinfo" Type="Self.employeeinfo" Multiplicity="0..1" />
+    <End Role="Bloginfo" Type="Self.Bloginfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employeeinfo">
+        <PropertyRef Name="emailid" />
+      </Principal>
+      <Dependent Role="Bloginfo">
+        <PropertyRef Name="empemail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="capstonedbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bloginfoes" EntityType="Self.Bloginfo" />
+    <EntitySet Name="employeeinfoes" EntityType="Self.employeeinfo" />
+    <EntitySet Name="AdminInfoes" EntityType="Self.AdminInfo" />
+    <AssociationSet Name="FK__Bloginfo__empema__5FB337D6" Association="Self.FK__Bloginfo__empema__5FB337D6">
+      <End Role="employeeinfo" EntitySet="employeeinfoes" />
+      <End Role="Bloginfo" EntitySet="Bloginfoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

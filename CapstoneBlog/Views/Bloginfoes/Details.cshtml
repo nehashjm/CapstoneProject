@@ -1,0 +1,58 @@
+﻿@model CapstoneBlog.Models.Bloginfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bloginfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Blogurl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Blogurl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employeeinfo.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employeeinfo.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Blogid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
